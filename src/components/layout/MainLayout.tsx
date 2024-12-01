@@ -6,7 +6,9 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
+import { Button, Layout, Menu, MenuProps, theme } from "antd";
+import { NavLink, Outlet } from "react-router-dom";
+import { adminSidebarItems } from "../../routes/admin.routes";
 
 const { Header, Sider, Content } = Layout;
 
@@ -15,31 +17,34 @@ function MainLayout() {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
   return (
-    <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
+    <Layout style={{ height: "100vh" }}>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsedWidth={0}
+        collapsed={collapsed}
+      >
+        <div className="demo-logo-vertical">
+          <h1
+            style={{
+              color: "white",
+              textTransform: "uppercase",
+              height: "3rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            ph uni
+          </h1>
+        </div>
         <Menu
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
+          items={adminSidebarItems}
         />
       </Sider>
       <Layout>
@@ -64,7 +69,7 @@ function MainLayout() {
             borderRadius: borderRadiusLG,
           }}
         >
-          Content
+          <Outlet></Outlet>
         </Content>
       </Layout>
     </Layout>
