@@ -3,7 +3,8 @@ import App from "../App";
 import About from "../pages/About";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import { adminRoutes } from "./admin.routes";
+import { adminPath } from "./admin.routes";
+import { routeGenerator } from "../utils/routesGenerator";
 
 const router = createBrowserRouter([
   {
@@ -19,17 +20,17 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <App></App>,
-    children: adminRoutes,
+    children: routeGenerator(adminPath),
   },
   {
     path: "/faculty",
     element: <App></App>,
-    children: adminRoutes,
+    children: routeGenerator(adminPath),
   },
   {
     path: "/student",
     element: <App></App>,
-    children: adminRoutes,
+    children: routeGenerator(adminPath),
   },
   {
     path: "/login",

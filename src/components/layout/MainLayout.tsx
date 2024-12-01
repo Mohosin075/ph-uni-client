@@ -2,13 +2,11 @@ import { useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, MenuProps, theme } from "antd";
-import { NavLink, Outlet } from "react-router-dom";
-import { adminSidebarItems } from "../../routes/admin.routes";
+import { Button, Layout, Menu, theme } from "antd";
+import { Outlet } from "react-router-dom";
+import { sidebarItemGenerator } from "../../utils/sidebarItemsGenerator";
+import { adminPath } from "../../routes/admin.routes";
 
 const { Header, Sider, Content } = Layout;
 
@@ -22,7 +20,9 @@ function MainLayout() {
     <Layout style={{ height: "100vh" }}>
       <Sider
         trigger={null}
+        breakpoint="lg"
         collapsible
+        onBreakpoint={(val)=> setCollapsed(val)}
         collapsedWidth={0}
         collapsed={collapsed}
       >
@@ -44,7 +44,7 @@ function MainLayout() {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
-          items={adminSidebarItems}
+          items={sidebarItemGenerator(adminPath, 'admin')}
         />
       </Sider>
       <Layout>
