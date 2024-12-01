@@ -1,14 +1,11 @@
 import { useState } from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Button, Layout, theme } from "antd";
 import { Outlet } from "react-router-dom";
-import { sidebarItemGenerator } from "../../utils/sidebarItemsGenerator";
-import { adminPath } from "../../routes/admin.routes";
 
-const { Header, Sider, Content } = Layout;
+import Sidebar from "./Sidebar";
+
+const { Header, Content } = Layout;
 
 function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
@@ -18,35 +15,7 @@ function MainLayout() {
 
   return (
     <Layout style={{ height: "100vh" }}>
-      <Sider
-        trigger={null}
-        breakpoint="lg"
-        collapsible
-        onBreakpoint={(val)=> setCollapsed(val)}
-        collapsedWidth={0}
-        collapsed={collapsed}
-      >
-        <div className="demo-logo-vertical">
-          <h1
-            style={{
-              color: "white",
-              textTransform: "uppercase",
-              height: "3rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            ph uni
-          </h1>
-        </div>
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={sidebarItemGenerator(adminPath, 'admin')}
-        />
-      </Sider>
+      <Sidebar collapsed={collapsed} setCollapsed={setCollapsed}></Sidebar>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
           <Button
