@@ -3,7 +3,7 @@ import { sidebarItemGenerator } from "../../utils/sidebarItemsGenerator";
 import { adminPath } from "../../routes/admin.routes";
 import { facultyPath } from "../../routes/faculty.routes";
 import { studentPath } from "../../routes/student.routes";
-import { TUserPath } from "../../types";
+import { TSidebarItem } from "../../types";
 
 interface SidebarProps {
   collapsed: boolean;
@@ -18,7 +18,7 @@ const user_role = {
 
 const role = "admin";
 
-let sidebarItems;
+let sidebarItems: TSidebarItem[];
 
 switch (role) {
   case user_role.ADMIN:
@@ -34,7 +34,6 @@ switch (role) {
   default:
     break;
 }
-
 const { Sider } = Layout;
 function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
   return (
